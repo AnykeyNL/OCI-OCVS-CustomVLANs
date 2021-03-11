@@ -1,4 +1,4 @@
-# OCI-OCVS-CustomerVLANs
+# OCI-OCVS-CustomVLANs
 Terraform script for custom vLAN design for Oracle Cloud VMware Solution (OCVS)
 
 This terraform script is designed to deploy OCVS in a smaller CIDR allocation then the default /22 allocation.
