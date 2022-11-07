@@ -3,10 +3,14 @@
 resource oci_ocvp_sddc export_OCVS {
   compartment_id              = var.compartment_ocid
   compute_availability_domain = "multi-ad"
-  display_name     = "OCVS-v7"
+  display_name     = var.SDDC_name
   esxi_hosts_count = "3"
+  #Available SKUs are: HOUR, MONTH, ONE_YEAR, THREE_YEARS
+  initial_sku = "HOUR"
+  #initial_host_shape_name = "BM.DenseIO2.52"
+  initial_host_shape_name = "BM.DenseIO.E4.32"
   hcx_vlan_id                  = oci_core_vlan.export_VLAN-OCVS-HCX.id
-  instance_display_name_prefix = "OCVS"
+  instance_display_name_prefix = var.SDDC_name
   is_hcx_enabled               = "true"
   nsx_edge_uplink1vlan_id      = oci_core_vlan.export_VLAN-OCVS-NSX-Edge-Uplink1.id
   nsx_edge_uplink2vlan_id      = oci_core_vlan.export_VLAN-OCVS-NSX-Edge-Uplink2.id
@@ -15,7 +19,11 @@ resource oci_ocvp_sddc export_OCVS {
   provisioning_subnet_id       = oci_core_subnet.export_Subnet-OCVS.id
   ssh_authorized_keys          = var.ssh_public_key
   vmotion_vlan_id              = oci_core_vlan.export_VLAN-OCVS-vMotion.id
-  vmware_software_version      = "7.0 update 2"
+  # Available version:
+  # - 6.5 update 3
+  # - 6.7 update 3
+  # - 7.0 update 3
+  vmware_software_version      = "7.0 update 3"
   vsan_vlan_id                 = oci_core_vlan.export_VLAN-OCVS-vSAN.id
   vsphere_vlan_id              = oci_core_vlan.export_VLAN-OCVS-vSphere.id
   provisioning_vlan_id         = oci_core_vlan.export_VLAN-OCVS-ProvisionNet.id
