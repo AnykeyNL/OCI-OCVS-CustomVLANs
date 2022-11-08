@@ -5,10 +5,8 @@ resource oci_ocvp_sddc export_OCVS {
   compute_availability_domain = "multi-ad"
   display_name     = var.SDDC_name
   esxi_hosts_count = "3"
-  #Available SKUs are: HOUR, MONTH, ONE_YEAR, THREE_YEARS
-  initial_sku = "HOUR"
-  #initial_host_shape_name = "BM.DenseIO2.52"
-  initial_host_shape_name = "BM.DenseIO.E4.32"
+  initial_sku = var.SDDC_billing
+  initial_host_shape_name = var.SDDC_shape
   hcx_vlan_id                  = oci_core_vlan.export_VLAN-OCVS-HCX.id
   instance_display_name_prefix = var.SDDC_name
   is_hcx_enabled               = "true"
